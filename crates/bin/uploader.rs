@@ -42,7 +42,11 @@ pub async fn login(user_cookie: PathBuf) -> Result<()> {
         1 => login_by_sms(client).await?,
         2 => login_by_qrcode(client).await?,
         3 => login_by_browser(client).await?,
-        4 => login_by_web_cookies(client).await?,
+        4 => {
+            let sessdata = "ok";
+            let bili_jct = "okk";
+            login_by_web_cookies(client, sess_data, bili_jct).await?
+        },
         5 => login_by_webqr_cookies(client).await?,
         _ => panic!(),
     };
